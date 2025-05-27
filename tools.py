@@ -1,6 +1,6 @@
 from llama_index.core.workflow import Context
 
-
+# This tool is used by the agent in order to find relevant chunks of text based on the query.
 async def retrieve_chunks(ctx: Context, query: str) -> str:
     """ Useful for retrieving relevant chunks from the document based on user questions. """
     state = await ctx.get("state")
@@ -17,6 +17,7 @@ async def retrieve_chunks(ctx: Context, query: str) -> str:
     return f"Retrieved relevant chunks:\n\n{chunks}"
 
 
+# This tool is used by the agent in order to have access to the full text of the document.
 async def summarize_document(ctx: Context) -> str:
     """Useful for storing the full parsed document in order to summarize it."""
     state = await ctx.get("state")
@@ -30,6 +31,7 @@ async def summarize_document(ctx: Context) -> str:
     return "Full text loaded into state for summarization."
 
 
+# This tool is used by the agent in order to record the final answer to the state.
 async def record_answer(ctx: Context, answer: str) -> str:
     """ Records the assistant's final answer into state. """
     state = await ctx.get("state")
